@@ -64,7 +64,7 @@ _ThreadService::~_ThreadService()
     //ks::logger::info("threadtest") << "destroying _ThreadService" << ks::endl;
 
     delete main_;
-    std::cerr << "done finalizing _ThreadService" << std::endl;
+    // std::cerr << "done finalizing _ThreadService" << std::endl;
 }
 
 void _ThreadService::put(ks_thread_id tid, Thread *tptr)
