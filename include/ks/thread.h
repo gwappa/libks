@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
- * Copyright (c) 2018 Keisuke Sehara
- * 
+ *
+ * Copyright (c) 2018-2019 Keisuke Sehara
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -65,6 +65,7 @@ private:
 #ifdef _WIN32
 typedef HANDLE              ks_thread_handle_t;
 typedef CRITICAL_SECTION    ks_mutex_t;
+typedef CONDITION_VARIABLE  ks_cond_t;
 #else
 typedef pthread_t           ks_thread_handle_t;
 typedef pthread_mutex_t     ks_mutex_t;
@@ -106,7 +107,6 @@ private:
 #ifdef _WIN32
     static int   run_static_return(Thread *t); // for WIN32 thread system
 
-    HANDLE         handle_;
     DWORD          id_;
 #else
     static void *run_static(Thread *t);        // for POSIX thread system
@@ -196,7 +196,7 @@ public:
     bool isset() { return state_; }
     void set(); // sets the state to true; internally it invokes notifyAll()
     void unset(); // sets the state to false; executes silently i.e. notify*() will not be invoked
-    
+
 private:
     bool        state_;
 };
