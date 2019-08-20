@@ -34,6 +34,7 @@
 #include <winsock2.h>
 #else
 #include <errno.h>
+#include <string.h>
 #endif
 
 namespace ks {

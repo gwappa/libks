@@ -26,6 +26,7 @@
 #include <sstream>
 #include <iostream>
 #include <errno.h>
+#include <string.h>
 
 #include "ks/thread.h"
 #include "ks/log.h"
